@@ -185,7 +185,7 @@ st.markdown(
         text-align: center;
         font-size: 14px;
         font-weight: 600;
-        color: #5b5363;
+        color: #5b5363 !important;
         margin-bottom: 10px;
     }
 
@@ -217,6 +217,72 @@ st.markdown(
     .peach {
         background-color: #f9e9df;
         border: 1px solid #efd6c5;
+    }
+
+
+    /* Section title */
+    .section-title {
+        color: #4d4657 !important;
+        font-size: 24px;
+        font-weight: 700;
+        margin-top: 10px;
+        margin-bottom: 18px;
+    }
+
+
+    /* Model information card */
+    .model-card {
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid #e4d8ec;
+        border-radius: 18px;
+        padding: 22px 25px;
+        margin-top: 10px;
+        box-shadow: 0 8px 25px rgba(130, 110, 145, 0.10);
+    }
+
+    .model-title {
+        color: #80669e !important;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .model-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 9px 0;
+        border-bottom: 1px solid #eee5f2;
+        color: #5b5363 !important;
+        font-size: 15px;
+    }
+
+    .model-row:last-child {
+        border-bottom: none;
+    }
+
+    .model-row span {
+        color: #817987 !important;
+    }
+
+    .model-row strong {
+        color: #4d4657 !important;
+        font-weight: 600;
+    }
+
+
+    /* Streamlit default text */
+    .stApp h2,
+    .stApp h3,
+    .stApp p,
+    .stApp label {
+        color: #4d4657 !important;
+    }
+
+
+    /* Horizontal divider */
+    .stApp hr {
+        border-color: #d9c9e6 !important;
     }
 
 
@@ -423,7 +489,11 @@ if st.button("✦  Classify Complaint"):
 
 st.markdown("---")
 
-st.subheader("Supported Categories")
+st.markdown(
+    '<div class="section-title">Supported Categories</div>',
+    unsafe_allow_html=True
+)
+
 
 # Display categories saved from the latest notebook
 category_styles = [
@@ -459,13 +529,43 @@ for index, category in enumerate(categories):
 
 st.markdown("---")
 
-st.subheader("Model Information")
+st.markdown(
+    """
+    <div class="model-card">
 
-st.write("Final Model: Tuned Multinomial Naive Bayes")
-st.write("TF-IDF: Unigrams + Bigrams")
-st.write("Naive Bayes Alpha: 0.1")
-st.write("Accuracy: 86.67%")
-st.write("Macro F1: 79.71%")
+        <div class="model-title">
+            Model Information
+        </div>
+
+        <div class="model-row">
+            <span>Final Model</span>
+            <strong>Tuned Multinomial Naive Bayes</strong>
+        </div>
+
+        <div class="model-row">
+            <span>TF-IDF</span>
+            <strong>Unigrams + Bigrams</strong>
+        </div>
+
+        <div class="model-row">
+            <span>Naive Bayes Alpha</span>
+            <strong>0.1</strong>
+        </div>
+
+        <div class="model-row">
+            <span>Accuracy</span>
+            <strong>86.67%</strong>
+        </div>
+
+        <div class="model-row">
+            <span>Macro F1</span>
+            <strong>79.71%</strong>
+        </div>
+
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 
 # ============================================================
